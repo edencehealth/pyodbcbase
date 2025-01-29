@@ -29,9 +29,8 @@ RUN set -eux; \
         python3 \
         python3-pip \
         wget \
-    ;
+    ; \
     # add MS apt repo
-RUN set -eux; \
     REPO_DEB="/tmp/packages-microsoft-prod.deb"; \
     wget -q https://packages.microsoft.com/config/ubuntu/${UBUNTU_RELEASE}/packages-microsoft-prod.deb \
         -O "${REPO_DEB}"; \
