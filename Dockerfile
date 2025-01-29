@@ -23,7 +23,7 @@ RUN set -eux; \
     $AG install \
         apt-transport-https \
         build-essential \
-        curl \
+        wget \
         debconf-utils \
         gnupg2 \
         locales \
@@ -33,8 +33,8 @@ RUN set -eux; \
     # add MS apt repo
 RUN set -eux; \
     REPO_DEB="/tmp/packages-microsoft-prod.deb"; \
-    curl -fsSL -o "${REPO_DEB}" \
-        https://packages.microsoft.com/config/ubuntu/${UBUNTU_RELEASE}/packages-microsoft-prod.deb; \
+    wget -https://packages.microsoft.com/config/ubuntu/${UBUNTU_RELEASE}/packages-microsoft-prod.deb \
+        -O "${REPO_DEB}"; \
     dpkg -i "${REPO_DEB}"; \
     rm "${REPO_DEB}"; \
     # install SQL Server drivers and tools
