@@ -29,8 +29,9 @@ RUN set -eux; \
         locales \
         python3 \
         python3-pip \
-    ; \
+    ;
     # add MS apt repo
+RUN set -eux; \
     REPO_DEB="/tmp/packages-microsoft-prod.deb"; \
     curl -fsSL -o "${REPO_DEB}" \
         https://packages.microsoft.com/config/ubuntu/${UBUNTU_RELEASE}/packages-microsoft-prod.deb; \
