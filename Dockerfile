@@ -23,16 +23,16 @@ RUN set -eux; \
     $AG install \
         apt-transport-https \
         build-essential \
-        wget \
         debconf-utils \
         gnupg2 \
         locales \
         python3 \
         python3-pip \
+        wget \
     ;
     # add MS apt repo
 RUN set -eux; \
-    REPO_DEB="/packages-microsoft-prod.deb"; \
+    REPO_DEB="/tmp/packages-microsoft-prod.deb"; \
     wget -q https://packages.microsoft.com/config/ubuntu/${UBUNTU_RELEASE}/packages-microsoft-prod.deb \
         -O "${REPO_DEB}"; \
     dpkg -i "${REPO_DEB}"; \
