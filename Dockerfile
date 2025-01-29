@@ -33,7 +33,7 @@ RUN set -eux; \
     # add MS apt repo
 RUN set -eux; \
     REPO_DEB="/packages-microsoft-prod.deb"; \
-    wget -https://packages.microsoft.com/config/ubuntu/${UBUNTU_RELEASE}/packages-microsoft-prod.deb \
+    wget -q https://packages.microsoft.com/config/ubuntu/${UBUNTU_RELEASE}/packages-microsoft-prod.deb \
         -O "${REPO_DEB}"; \
     dpkg -i "${REPO_DEB}"; \
     rm "${REPO_DEB}"; \
