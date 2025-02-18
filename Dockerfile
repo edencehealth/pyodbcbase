@@ -19,15 +19,18 @@ ARG AG="apt-get -yq --no-install-recommends"
 
 RUN set -eux; \
     $AG update; \
-    $AG upgrade; \
+    $AG install locales; \
+    locale-gen ${LANG}; \
+    update-locale LANG=${LANG}; \
     $AG install \
         apt-transport-https \
         build-essential \
         debconf-utils \
         gnupg2 \
-        locales \
+        libgssapi-krb5-2 \
         python3 \
         python3-pip \
+        unixodbc-dev \
         wget \
     ; \
     # add MS apt repo
