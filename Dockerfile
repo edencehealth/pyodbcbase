@@ -19,15 +19,18 @@ ARG AG="apt-get -yq --no-install-recommends"
 
 RUN set -eux; \
     $AG update; \
-    $AG upgrade; \
+    $AG install locales; \
+    locale-gen ${LANG}; \
+    update-locale LANG=${LANG}; \
     $AG install \
         apt-transport-https \
         build-essential \
         debconf-utils \
         gnupg2 \
-        locales \
+        libgssapi-krb5-2 \
         python3 \
         python3-pip \
+        unixodbc-dev \
         wget \
     ; \
     # add MS apt repo
@@ -48,10 +51,6 @@ RUN set -eux; \
 
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/mssql-tools${MSSQL_RELEASE}/bin
 RUN ln -s /usr/bin/python3 /usr/bin/python
-
-RUN set -eux; \
-    locale-gen ${LANG}; \
-    update-locale LANG=${LANG}
 
 COPY requirements.txt /
 RUN pip install --no-cache-dir --break-system-packages -r /requirements.txt
