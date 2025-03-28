@@ -14,6 +14,7 @@ ARG GIT_TAG
 
 # these args are just used during the build
 ARG ACCEPT_EULA="Y"
+ONBUILD ARG ACCEPT_EULA="Y"
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG AG="apt-get -yq --no-install-recommends"
 
